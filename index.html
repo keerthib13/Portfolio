@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Keerthi B - Portfolio</title>
+<style>
+/* ========================================================= */
+/*                      THEME VARIABLES                      */
+/* ========================================================= */
+:root {
+  --charcoal: #1b1b1d;
+  --panel: #232326;
+  --soft-white: #ffffff;
+  --aqua: #4fdcd9;
+  --muted: #bfc6c9;
+  --card-bg: #2a2a2d;
+}
+
+body.light {
+  --charcoal: #f4f4f4;
+  --panel: #ffffff;
+  --soft-white: #000;
+  --card-bg: #e6e6e6;
+  --muted: #444;
+}
+
+/* GLOBAL RESET */
+body {
+  margin: 0;
+  background: var(--charcoal);
+  font-family: "Times New Roman", serif;
+  color: var(--soft-white);
+  transition: background 0.4s, color 0.4s;
+}
+html { scroll-behavior: smooth; }
+
+/* HEADER */
+.header {
+  width: 100%;
+  background: var(--panel);
+  padding: 12px 0;
+  text-align: center;
+  position: fixed;
+  top: 0;
+  z-index: 50;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.header nav a {
+  margin: 0 22px;
+  color: var(--aqua);
+  font-size: 19px;
+  font-weight: bold;
+}
+.header nav a:hover { color: white; }
+
+/* Toggle Button */
+.toggle-btn {
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  background: var(--aqua);
+  color: black;
+  padding: 6px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 300px;
+  background: var(--panel);
+  height: 100vh;
+  padding: 100px 26px 40px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow-y: auto;
+  border-right: 1px solid rgba(255,255,255,0.08);
+}
+.profile-pic img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--aqua);
+  transition: 0.4s;
+}
+
+/* MAIN */
+.main {
+  margin-left: 330px;
+  padding: 100px 40px 40px;
+}
+.section { margin-bottom: 40px; }
+h2 { color: var(--aqua); margin-bottom: 12px; }
+
+/* SKILL BARS */
+.skill-bar {
+  background: #333;
+  height: 10px;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-top: 6px;
+}
+.skill-bar-fill {
+  height: 10px;
+  background: var(--aqua);
+  width: 0;
+  border-radius: 6px;
+  animation: fillBar 2s forwards;
+}
+@keyframes fillBar { to { width: var(--level); } }
+
+/* PROJECT CARD (without images) */
+.project-card {
+  background: var(--card-bg);
+  padding: 24px;
+  border-radius: 14px;
+  border-left: 4px solid var(--aqua);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+}
+
+/* COURSE */
+.course-card {
+  background: var(--card-bg);
+  padding: 24px;
+  border-left: 4px solid var(--aqua);
+  border-radius: 14px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+}
+
+/* WhatsApp Floating Button */
+.whatsapp-float {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 20px;
+  right: 20px;
+  background: #25D366;
+  color: white;
+  font-size: 32px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  z-index: 999;
+}
+
+/* RESPONSIVE */
+@media(max-width: 900px){
+  .sidebar{width: 100%; height: auto; position: relative; text-align: center; padding: 40px 0;}
+  .main{margin-left: 0; padding: 20px;}
+  .profile-pic img{width: 150px; height: 150px;}
+  h2{font-size: 22px;}
+  .header nav a{margin: 0 12px; font-size: 16px;}
+}
+@media(max-width: 600px){
+  .skill-bar{height: 8px;}
+  .project-card, .course-card{padding: 18px;}
+  .whatsapp-float{width: 50px;height: 50px;font-size: 26px;}
+}
+/* EXTRA STYLES & ANIMATIONS */
+.fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease, transform 0.8s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+
+/* Card Hover Animation */
+.project-card, .course-card {
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.project-card:hover, .course-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.45);
+}
+
+/* Sidebar picture hover */
+.profile-pic img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 18px var(--aqua);
+}
+
+/* Smooth section fade-in on scroll */
+</style>
+</head>
+
+<body>
+<div class="toggle-btn" onclick="toggleTheme()">Theme</div>
+
+<header class="header">
+  <nav>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#courses">Courses</a>
+    <a href="#internships">Internships</a>
+  </nav>
+</header>
+
+<aside class="sidebar">
+  <div class="profile-pic">
+    <img src="keerthi_photo.jpg" />
+  </div>
+  <h1 class="name">Keerthi B</h1>
+  <div class="role">Data Scientist & Analyst</div>
+</aside>
+
+<main class="main">
+<section id="about" class="section">
+  <h2>About Me</h2>
+  <p>I am an ECE graduate with strong passion in Machine Learning, Deep Learning and Data Engineering. I build real-time applications using Python, AI and BI tools.</p>
+</section>
+
+<section id="skills" class="section">
+  <h2>Skills</h2>
+  <h3>Python</h3>
+  <div class="skill-bar"><div class="skill-bar-fill" style="--level:90%"></div></div>
+  <h3>SQL</h3>
+  <div class="skill-bar"><div class="skill-bar-fill" style="--level:85%"></div></div>
+  <h3>Machine Learning</h3>
+  <div class="skill-bar"><div class="skill-bar-fill" style="--level:80%"></div></div>
+  <h3>Deep Learning</h3>
+  <div class="skill-bar"><div class="skill-bar-fill" style="--level:75%"></div></div>
+  <h3>Power BI</h3>
+  <div class="skill-bar"><div class="skill-bar-fill" style="--level:88%"></div></div>
+</section>
+
+<section id="projects" class="section">
+  <h2>Projects</h2>
+
+  <div class="project-card">
+    <h3>Automated 2D/3D Image Mosaicing System</h3>
+    <p>Underwater image stitching using SIFT, ORB, RANSAC and multiband blending.</p>
+  </div>
+
+  <div class="project-card">
+    <h3>Stock Market Prediction App</h3>
+    <p>Predicting next 5 days using LSTM + Streamlit interactive dashboard.</p>
+  </div>
+
+  <div class="project-card">
+    <h3>Adventure Works BI Dashboard</h3>
+    <p>Interactive Sales & Marketing dashboard with KPIs and insights.</p>
+  </div>
+</section>
+
+<section id="courses" class="section">
+  <h2>Courses</h2>
+  <div class="course-card">
+    <h3>Masters in Data Science & AI (6 Months)</h3>
+    <p>Completed at: <strong>FITA Training Academy</strong></p>
+  </div>
+</section>
+
+<section id="internships" class="section">
+  <h2>Internships</h2>
+  <div class="project-card">
+    <h3>M</h3>
+    <ul><li>Cleaned dataset</li><li>ETL roles</li></ul>
+  </div>
+</section>
+</main>
+
+<script>
+function toggleTheme(){ document.body.classList.toggle("light"); }
+</script>
+
+<a href="https://wa.me/9384608177" class="whatsapp-float" target="_blank">💬</a>
+
+<script>
+// Fade-in scroll animation
+const faders = document.querySelectorAll('.section');
+function showElements(){
+  faders.forEach(el =>{
+    const rect = el.getBoundingClientRect();
+    if(rect.top < window.innerHeight - 100){ el.classList.add('visible', 'fade-in'); }
+  })
+}
+window.addEventListener('scroll', showElements);
+window.addEventListener('load', showElements);
+</script>
+</body>
+</html>
