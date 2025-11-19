@@ -4,10 +4,11 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Keerthi B - Portfolio</title>
+
 <style>
-/* ========================================================= */
-/*                      THEME VARIABLES                      */
-/* ========================================================= */
+/* ============================= */
+/*        THEME VARIABLES        */
+/* ============================= */
 :root {
   --charcoal: #1b1b1d;
   --panel: #232326;
@@ -16,46 +17,45 @@
   --muted: #bfc6c9;
   --card-bg: #2a2a2d;
 }
-
-body.light {
+body.dark {
   --charcoal: #f4f4f4;
   --panel: #ffffff;
-  --soft-white: #000;
+  --soft-white: #000000;
+  --muted: #333;
   --card-bg: #e6e6e6;
-  --muted: #444;
 }
 
-/* GLOBAL RESET */
+/* GLOBAL */
 body {
   margin: 0;
   background: var(--charcoal);
-  font-family: "Times New Roman", serif;
   color: var(--soft-white);
-  transition: background 0.4s, color 0.4s;
+  font-family: "Times New Roman", serif;
+  transition: background 0.3s, color 0.3s;
 }
 html { scroll-behavior: smooth; }
 
-/* HEADER */
+/* HEADER NAV */
 .header {
   width: 100%;
   background: var(--panel);
-  padding: 12px 0;
+  padding: 14px 0;
   text-align: center;
   position: fixed;
   top: 0;
   z-index: 50;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 .header nav a {
   margin: 0 22px;
   color: var(--aqua);
-  font-size: 19px;
+  font-size: 18px;
   font-weight: bold;
 }
 .header nav a:hover { color: white; }
 
-/* Toggle Button */
-.toggle-btn {
+/* Theme Button */
+#themeToggle {
   position: absolute;
   right: 20px;
   top: 10px;
@@ -65,6 +65,7 @@ html { scroll-behavior: smooth; }
   border-radius: 8px;
   cursor: pointer;
   font-weight: bold;
+  border: none;
 }
 
 /* SIDEBAR */
@@ -77,16 +78,17 @@ html { scroll-behavior: smooth; }
   top: 0;
   left: 0;
   overflow-y: auto;
-  border-right: 1px solid rgba(255,255,255,0.08);
+  border-right: 1px solid rgba(255,255,255,0.1);
 }
 .profile-pic img {
   width: 200px;
   height: 200px;
   border-radius: 50%;
-  object-fit: cover;
   border: 4px solid var(--aqua);
-  transition: 0.4s;
+  object-fit: cover;
 }
+.name { font-size: 26px; text-align: center; margin-top: 10px; }
+.role { text-align: center; color: var(--aqua); margin-top: 4px; font-size: 16px; }
 
 /* MAIN */
 .main {
@@ -94,44 +96,45 @@ html { scroll-behavior: smooth; }
   padding: 100px 40px 40px;
 }
 .section { margin-bottom: 40px; }
-h2 { color: var(--aqua); margin-bottom: 12px; }
+h2 { color: var(--aqua); font-size: 28px; margin-bottom: 10px; }
 
-/* SKILL BARS */
-.skill-bar {
-  background: #333;
-  height: 10px;
-  border-radius: 6px;
-  overflow: hidden;
-  margin-top: 6px;
+/* PROJECT IMAGE PLACEHOLDER */
+.project-img {
+  width: 100%;
+  height: 180px;
+  background: rgba(79,220,217,0.15);
+  border: 1px solid var(--aqua);
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--aqua);
+  font-size: 18px;
+  margin-bottom: 10px;
 }
-.skill-bar-fill {
-  height: 10px;
-  background: var(--aqua);
-  width: 0;
-  border-radius: 6px;
-  animation: fillBar 2s forwards;
-}
-@keyframes fillBar { to { width: var(--level); } }
 
-/* PROJECT CARD (without images) */
-.project-card {
+/* CARD DESIGN */
+.project-card, .course-card, .intern-card {
   background: var(--card-bg);
   padding: 24px;
   border-radius: 14px;
   border-left: 4px solid var(--aqua);
-  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+  margin-bottom: 20px;
+}
+.project-title { color: var(--aqua); font-size: 22px; }
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .sidebar{width:100%;height:auto;position:relative;text-align:center;padding:40px 0;}
+  .main{margin-left:0;padding:20px;}
+  .profile-pic img{width:150px;height:150px;}
+}
+@media(max-width:600px){
+  h2{font-size:22px;}
+  #themeToggle{right:10px;top:8px;padding:4px 10px;}
 }
 
-/* COURSE */
-.course-card {
-  background: var(--card-bg);
-  padding: 24px;
-  border-left: 4px solid var(--aqua);
-  border-radius: 14px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-}
-
-/* WhatsApp Floating Button */
+/* WHATSAPP FLOAT */
 .whatsapp-float {
   position: fixed;
   width: 60px;
@@ -148,46 +151,12 @@ h2 { color: var(--aqua); margin-bottom: 12px; }
   box-shadow: 0 4px 12px rgba(0,0,0,0.3);
   z-index: 999;
 }
-
-/* RESPONSIVE */
-@media(max-width: 900px){
-  .sidebar{width: 100%; height: auto; position: relative; text-align: center; padding: 40px 0;}
-  .main{margin-left: 0; padding: 20px;}
-  .profile-pic img{width: 150px; height: 150px;}
-  h2{font-size: 22px;}
-  .header nav a{margin: 0 12px; font-size: 16px;}
-}
-@media(max-width: 600px){
-  .skill-bar{height: 8px;}
-  .project-card, .course-card{padding: 18px;}
-  .whatsapp-float{width: 50px;height: 50px;font-size: 26px;}
-}
-/* EXTRA STYLES & ANIMATIONS */
-.fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease, transform 0.8s ease; }
-.fade-in.visible { opacity: 1; transform: translateY(0); }
-
-/* Card Hover Animation */
-.project-card, .course-card {
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-}
-.project-card:hover, .course-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.45);
-}
-
-/* Sidebar picture hover */
-.profile-pic img:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 18px var(--aqua);
-}
-
-/* Smooth section fade-in on scroll */
 </style>
 </head>
 
-<body>
-<div class="toggle-btn" onclick="toggleTheme()">Theme</div>
+<body class="dark">
 
+<!-- HEADER -->
 <header class="header">
   <nav>
     <a href="#about">About</a>
@@ -196,17 +165,19 @@ h2 { color: var(--aqua); margin-bottom: 12px; }
     <a href="#courses">Courses</a>
     <a href="#internships">Internships</a>
   </nav>
+  <button id="themeToggle">☀️</button>
 </header>
 
+<!-- SIDEBAR -->
 <aside class="sidebar">
-  <div class="profile-pic">
-    <img src="keerthi_photo.jpg" />
-  </div>
+  <div class="profile-pic"><img src="keerthi_photo.jpg" /></div>
   <h1 class="name">Keerthi B</h1>
   <div class="role">Data Scientist & Analyst</div>
 </aside>
 
+<!-- MAIN CONTENT -->
 <main class="main">
+
 <section id="about" class="section">
   <h2>About Me</h2>
   <p>I am an ECE graduate with strong passion in Machine Learning, Deep Learning and Data Engineering. I build real-time applications using Python, AI and BI tools.</p>
@@ -214,71 +185,69 @@ h2 { color: var(--aqua); margin-bottom: 12px; }
 
 <section id="skills" class="section">
   <h2>Skills</h2>
-  <h3>Python</h3>
-  <div class="skill-bar"><div class="skill-bar-fill" style="--level:90%"></div></div>
-  <h3>SQL</h3>
-  <div class="skill-bar"><div class="skill-bar-fill" style="--level:85%"></div></div>
-  <h3>Machine Learning</h3>
-  <div class="skill-bar"><div class="skill-bar-fill" style="--level:80%"></div></div>
-  <h3>Deep Learning</h3>
-  <div class="skill-bar"><div class="skill-bar-fill" style="--level:75%"></div></div>
-  <h3>Power BI</h3>
-  <div class="skill-bar"><div class="skill-bar-fill" style="--level:88%"></div></div>
+  <p>Python, SQL, ML, DL, AI, Power BI, Excel</p>
 </section>
 
 <section id="projects" class="section">
   <h2>Projects</h2>
 
   <div class="project-card">
-    <h3>Automated 2D/3D Image Mosaicing System</h3>
-    <p>Underwater image stitching using SIFT, ORB, RANSAC and multiband blending.</p>
+    <div class="project-img">PROJECT IMAGE</div>
+    <h3 class="project-title">Automated 2D/3D Image Mosaicing System</h3>
+    <p>Underwater stitching using SIFT/ORB/RANSAC + Multiband Blending.</p>
   </div>
 
   <div class="project-card">
-    <h3>Stock Market Prediction App</h3>
-    <p>Predicting next 5 days using LSTM + Streamlit interactive dashboard.</p>
+    <div class="project-img">PROJECT IMAGE</div>
+    <h3 class="project-title">Stock Market Prediction App</h3>
+    <p>LSTM-based stock forecasting with Streamlit UI.</p>
   </div>
 
   <div class="project-card">
-    <h3>Adventure Works BI Dashboard</h3>
-    <p>Interactive Sales & Marketing dashboard with KPIs and insights.</p>
+    <div class="project-img">PROJECT IMAGE</div>
+    <h3 class="project-title">Adventure Works BI Dashboard</h3>
+    <p>Sales & Marketing analytics dashboard using Power BI.</p>
   </div>
 </section>
 
 <section id="courses" class="section">
   <h2>Courses</h2>
   <div class="course-card">
-    <h3>Masters in Data Science & AI (6 Months)</h3>
-    <p>Completed at: <strong>FITA Training Academy</strong></p>
+    <h3>Masters in Data Science & AI</h3>
+    <p>Completed at FITA Training Academy (6 Months)</p>
   </div>
 </section>
 
 <section id="internships" class="section">
   <h2>Internships</h2>
-  <div class="project-card">
-    <h3>M</h3>
-    <ul><li>Cleaned dataset</li><li>ETL roles</li></ul>
+  <div class="intern-card">
+    <h3>Madras Fertilizer Limited - Data Engineer Intern</h3>
+    <p>Performed ETL, data cleaning, and pipeline support.</p>
+  </div>
+  <div class="intern-card">
+    <h3>Oracis Sez Pvt Ltd - Data Analyst Intern</h3>
+    <p>6 months: Dashboard creation, data exploration, insights reporting.</p>
   </div>
 </section>
+
 </main>
 
-<script>
-function toggleTheme(){ document.body.classList.toggle("light"); }
-</script>
-
+<!-- WHATSAPP FLOAT BUTTON -->
 <a href="https://wa.me/9384608177" class="whatsapp-float" target="_blank">💬</a>
 
 <script>
-// Fade-in scroll animation
-const faders = document.querySelectorAll('.section');
-function showElements(){
-  faders.forEach(el =>{
-    const rect = el.getBoundingClientRect();
-    if(rect.top < window.innerHeight - 100){ el.classList.add('visible', 'fade-in'); }
-  })
-}
-window.addEventListener('scroll', showElements);
-window.addEventListener('load', showElements);
+const toggle = document.getElementById("themeToggle");
+
+toggle.addEventListener("click", () => {
+    document.body.classList.toggle("dark");
+
+    if (document.body.classList.contains("dark")) {
+        toggle.textContent = "☀️";
+    } else {
+        toggle.textContent = "🌙";
+    }
+});
 </script>
+
 </body>
 </html>
