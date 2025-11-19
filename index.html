@@ -1,260 +1,395 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Keerthi B - Portfolio</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Keerthi B — Data Scientist & Data Analyst</title>
 
 <style>
-/* ============================= */
-/*        THEME VARIABLES        */
-/* ============================= */
-:root {
-  --charcoal: #1b1b1d;
-  --panel: #232326;
-  --soft-white: #ffffff;
-  --aqua: #4fdcd9;
-  --muted: #bfc6c9;
-  --card-bg: #2a2a2d;
-}
-body.dark {
-  --charcoal: #f4f4f4;
-  --panel: #ffffff;
-  --soft-white: #000000;
-  --muted: #333;
-  --card-bg: #e6e6e6;
-}
+  /* Theme colors */
+  :root{
+    --charcoal:#1b1b1d;
+    --panel:#232326;
+    --aqua:#4fdcd9;
+    --white:#ffffff;
+    --card:#2a2a2d;
+    --muted:#bfc6c9;
+  }
 
-/* GLOBAL */
-body {
-  margin: 0;
-  background: var(--charcoal);
-  color: var(--soft-white);
-  font-family: "Times New Roman", serif;
-  transition: background 0.3s, color 0.3s;
-}
-html { scroll-behavior: smooth; }
+  /* Light mode variables (applied when body.has-light) */
+  body.has-light{
+    --charcoal:#ffffff;
+    --panel:#f7f7f7;
+    --aqua:#4fdcd9;
+    --white:#111111;
+    --card:#f0f0f0;
+    --muted:#666666;
+  }
 
-/* HEADER NAV */
-.header {
-  width: 100%;
-  background: var(--panel);
-  padding: 14px 0;
-  text-align: center;
-  position: fixed;
-  top: 0;
-  z-index: 50;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-}
-.header nav a {
-  margin: 0 22px;
-  color: var(--aqua);
-  font-size: 18px;
-  font-weight: bold;
-}
-.header nav a:hover { color: white; }
+  /* Base */
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    font-family:"Times New Roman", serif;
+    background:var(--charcoal);
+    color:var(--white);
+    -webkit-font-smoothing:antialiased;
+    transition:background .32s, color .32s;
+  }
+  a{color:var(--aqua); text-decoration:none}
 
-/* Theme Button */
-#themeToggle {
-  position: absolute;
-  right: 20px;
-  top: 10px;
-  background: var(--aqua);
-  color: black;
-  padding: 6px 14px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
-  border: none;
-}
+  /* Header nav */
+  .header{
+    position:fixed;top:0;left:0;right:0;
+    background:var(--panel);
+    display:flex;justify-content:center;align-items:center;
+    padding:12px 16px;
+    border-bottom:1px solid rgba(255,255,255,0.06);
+    z-index:60;
+  }
+  .header nav{display:flex;gap:22px}
+  .header nav a{color:var(--aqua);font-weight:700;font-size:16px;position:relative}
+  .header nav a:after{content:"";position:absolute;left:0;bottom:-6px;width:0;height:2px;background:var(--aqua);transition:width .28s}
+  .header nav a:hover:after{width:100%}
+  .header nav a:hover{color:var(--white)}
 
-/* SIDEBAR */
-.sidebar {
-  width: 300px;
-  background: var(--panel);
-  height: 100vh;
-  padding: 100px 26px 40px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  overflow-y: auto;
-  border-right: 1px solid rgba(255,255,255,0.1);
-}
-.profile-pic img {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  border: 4px solid var(--aqua);
-  object-fit: cover;
-}
-.name { font-size: 26px; text-align: center; margin-top: 10px; }
-.role { text-align: center; color: var(--aqua); margin-top: 4px; font-size: 16px; }
+  /* Theme toggle button */
+  #themeToggle{
+    position:absolute; right:18px; top:10px;
+    background:var(--aqua); color:#000; border:none; padding:6px 12px;
+    border-radius:8px; cursor:pointer; font-weight:700;
+  }
 
-/* MAIN */
-.main {
-  margin-left: 330px;
-  padding: 100px 40px 40px;
-}
-.section { margin-bottom: 40px; }
-h2 { color: var(--aqua); font-size: 28px; margin-bottom: 10px; }
+  /* Layout */
+  .sidebar{
+    position:fixed; left:0; top:0; bottom:0;
+    width:300px;
+    background:var(--panel);
+    padding:120px 22px 30px;
+    overflow:auto;
+    border-right:1px solid rgba(255,255,255,0.06);
+  }
+  .main{margin-left:330px;padding:110px 44px 60px;min-height:100vh}
 
-/* PROJECT IMAGE PLACEHOLDER */
-.project-img {
-  width: 100%;
-  height: 180px;
-  background: rgba(79,220,217,0.15);
-  border: 1px solid var(--aqua);
-  border-radius: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: var(--aqua);
-  font-size: 18px;
-  margin-bottom: 10px;
-}
+  /* Sidebar content order: photo -> role -> name -> details */
+  .profile-pic{display:flex;justify-content:center}
+  .profile-pic img{width:200px;height:200px;border-radius:50%;object-fit:cover;border:4px solid var(--aqua);box-shadow:0 10px 28px rgba(79,220,217,0.08);transition:transform .3s}
+  .profile-pic img:hover{transform:scale(1.03)}
+  .role{color:var(--aqua);text-align:center;margin-top:12px;font-weight:800}
+  .name{font-size:22px;text-align:center;margin-top:6px;font-weight:700}
+  .details{margin-top:18px;display:flex;flex-direction:column;gap:10px}
+  .details .label{color:var(--aqua);font-weight:700;font-size:13px}
+  .details .value{color:var(--white);font-size:15px;word-break:break-word}
 
-/* CARD DESIGN */
-.project-card, .course-card, .intern-card {
-  background: var(--card-bg);
-  padding: 24px;
-  border-radius: 14px;
-  border-left: 4px solid var(--aqua);
-  margin-bottom: 20px;
-}
-.project-title { color: var(--aqua); font-size: 22px; }
+  /* Sections */
+  section{margin-bottom:34px;opacity:0;animation:fadeIn .6s ease forwards}
+  @keyframes fadeIn{to{opacity:1}}
+  h2{color:var(--aqua);font-size:26px;margin:0 0 8px}
 
-/* RESPONSIVE */
-@media(max-width:900px){
-  .sidebar{width:100%;height:auto;position:relative;text-align:center;padding:40px 0;}
-  .main{margin-left:0;padding:20px;}
-  .profile-pic img{width:150px;height:150px;}
-}
-@media(max-width:600px){
-  h2{font-size:22px;}
-  #themeToggle{right:10px;top:8px;padding:4px 10px;}
-}
+  /* ABOUT (professional) */
+  .about p{color:var(--white);line-height:1.6;font-size:16px;max-width:900px}
 
-/* WHATSAPP FLOAT */
-.whatsapp-float {
-  position: fixed;
-  width: 60px;
-  height: 60px;
-  bottom: 20px;
-  right: 20px;
-  background: #25D366;
-  color: white;
-  font-size: 32px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-  z-index: 999;
-}
+  /* Skills - three groups of horizontal cards */
+  .skills-groups{display:flex;flex-direction:column;gap:20px}
+  .skill-block h3{color:var(--aqua);margin:0 0 8px;font-size:18px}
+  .skill-row{display:flex;gap:10px;flex-wrap:wrap}
+  .skill-card{
+    background:var(--card);padding:10px 14px;border-radius:9px;border:1px solid rgba(255,255,255,0.04);
+    font-size:15px;color:var(--white)
+  }
+
+  /* Projects vertical: each card full-width with 4px aqua left border */
+  .project-vertical{display:flex;flex-direction:column;gap:18px}
+  .project-card{
+    background:var(--card);padding:20px;border-radius:12px;border-left:4px solid var(--aqua);
+    box-shadow:0 8px 28px rgba(0,0,0,0.35)
+  }
+  .project-card .title{color:var(--aqua);font-size:20px;margin:0 0 8px;font-weight:800}
+  .project-card p, .project-card ul{color:var(--white);font-size:15px;line-height:1.6}
+  .project-card ul{margin-left:18px}
+  .project-card .tools{margin-top:8px;color:var(--muted);font-size:14px}
+
+  /* Course card */
+  .course-card{background:var(--card);padding:18px;border-left:4px solid var(--aqua);border-radius:12px;color:var(--white)}
+
+  /* Internships */
+  .intern-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:18px}
+  .intern-card{background:var(--card);padding:18px;border-radius:12px;border-left:4px solid var(--aqua);color:var(--white)}
+  .intern-card p, .intern-card ul{font-size:15px;color:var(--white);line-height:1.6}
+
+  /* WhatsApp float */
+  .whatsapp-float{position:fixed;right:18px;bottom:18px;background:#25D366;color:#fff;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;text-decoration:none;box-shadow:0 10px 30px rgba(0,0,0,0.25);z-index:999}
+
+  /* Footer */
+  .footer{margin-top:30px;color:var(--muted);font-size:14px;text-align:center}
+
+  /* Hover & small animations */
+  .project-card:hover,.intern-card:hover{transform:translateY(-6px);box-shadow:0 0 22px rgba(79,220,217,0.18);transition:all .28s}
+  .skill-card:hover{transform:translateY(-6px);transition:.2s}
+
+  /* Responsive */
+  @media(max-width:980px){
+    .sidebar{position:relative;width:100%;height:auto;padding:22px;text-align:center;border-right:0}
+    .main{margin-left:0;padding:20px}
+    .profile-pic img{width:150px;height:150px}
+    .header nav{flex-wrap:wrap;gap:12px}
+    #themeToggle{position:fixed;right:16px;top:72px}
+  }
 </style>
 </head>
-
 <body class="dark">
 
-<!-- HEADER -->
-<header class="header">
-  <nav>
-    <a href="#about">About</a>
-    <a href="#skills">Skills</a>
-    <a href="#projects">Projects</a>
-    <a href="#courses">Courses</a>
-    <a href="#internships">Internships</a>
-  </nav>
-  <button id="themeToggle">☀️</button>
-</header>
+  <!-- Header nav -->
+  <header class="header">
+    <nav>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#courses">Courses</a>
+      <a href="#internships">Internships</a>
+      <a href="#contact">Contact</a>
+    </nav>
 
-<!-- SIDEBAR -->
-<aside class="sidebar">
-  <div class="profile-pic"><img src="keerthi_photo.jpg" /></div>
-  <h1 class="name">Keerthi B</h1>
-  <div class="role">Data Scientist & Analyst</div>
-  <div class="details">
-    <p><strong>Date of Birth:</strong> 13 November 2003</p>
-    <p><strong>Location:</strong> Chennai, Tamil Nadu, India</p>
-    <p><strong>Email:</strong> <a href="mailto:keerthiib13@gmail.com">keerthiib13@gmail.com</a></p>
-    <p><strong>Phone:</strong> <a href="tel:+919384608177">+91 9384608177</a></p>
-    <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/keerthi-balasubramanian-16936a289/" target="_blank">keerthi-balasubramanian</a></p>
-    <p><strong>GitHub:</strong> <a href="https://github.com/keerthib13" target="_blank">github.com/keerthib13</a></p>
-  </div>
-</aside>
+    <button id="themeToggle" aria-label="Toggle theme">☀️</button>
+  </header>
 
-<!-- MAIN CONTENT -->
-<main class="main">
+  <!-- Sidebar -->
+  <aside class="sidebar" role="complementary">
+    <div class="profile-pic">
+      <img src="keerthi_photo.jpg" alt="Keerthi photo">
+    </div>
 
-<section id="about" class="section">
-  <h2>About Me</h2>
-  <p>I am an ECE graduate with strong passion in Machine Learning, Deep Learning and Data Engineering. I build real-time applications using Python, AI and BI tools.</p>
-</section>
+    <div class="role">DATA SCIENTIST &amp; ANALYST</div>
+    <div class="name">Keerthi B</div>
 
-<section id="skills" class="section">
-  <h2>Skills</h2>
-  <p>Python, SQL, ML, DL, AI, Power BI, Excel</p>
-</section>
+    <div class="details">
+      <div>
+        <div class="label">Date of Birth</div>
+        <div class="value">13 November 2003</div>
+      </div>
 
-<section id="projects" class="section">
-  <h2>Projects</h2>
+      <div>
+        <div class="label">Location</div>
+        <div class="value">Chennai, Tamil Nadu, India</div>
+      </div>
 
-  <div class="project-card">
-    <div class="project-img">PROJECT IMAGE</div>
-    <h3 class="project-title">Automated 2D/3D Image Mosaicing System</h3>
-    <p>Underwater stitching using SIFT/ORB/RANSAC + Multiband Blending.</p>
-  </div>
+      <div>
+        <div class="label">Email</div>
+        <div class="value"><a href="mailto:keerthiib13@gmail.com" style="color:var(--white)">keerthiib13@gmail.com</a></div>
+      </div>
 
-  <div class="project-card">
-    <div class="project-img">PROJECT IMAGE</div>
-    <h3 class="project-title">Stock Market Prediction App</h3>
-    <p>LSTM-based stock forecasting with Streamlit UI.</p>
-  </div>
+      <div>
+        <div class="label">Phone</div>
+        <div class="value"><a href="tel:+919384608177" style="color:var(--white)">+91 9384608177</a></div>
+      </div>
 
-  <div class="project-card">
-    <div class="project-img">PROJECT IMAGE</div>
-    <h3 class="project-title">Adventure Works BI Dashboard</h3>
-    <p>Sales & Marketing analytics dashboard using Power BI.</p>
-  </div>
-</section>
+      <div>
+        <div class="label">LinkedIn</div>
+        <div class="value"><a href="https://www.linkedin.com/in/keerthi-balasubramanian-16936a289/" target="_blank" style="color:var(--white)">keerthi-balasubramanian</a></div>
+      </div>
 
-<section id="courses" class="section">
-  <h2>Courses</h2>
-  <div class="course-card">
-    <h3>Masters in Data Science & AI</h3>
-    <p>Completed at FITA Training Academy (6 Months)</p>
-  </div>
-</section>
+      <div>
+        <div class="label">GitHub</div>
+        <div class="value"><a href="https://github.com/keerthib13" target="_blank" style="color:var(--white)">github.com/keerthib13</a></div>
+      </div>
 
-<section id="internships" class="section">
-  <h2>Internships</h2>
-  <div class="intern-card">
-    <h3>Madras Fertilizer Limited - Data Engineer Intern</h3>
-    <p>Performed ETL, data cleaning, and pipeline support.</p>
-  </div>
-  <div class="intern-card">
-    <h3>Oracis Sez Pvt Ltd - Data Analyst Intern</h3>
-    <p>6 months: Dashboard creation, data exploration, insights reporting.</p>
-  </div>
-</section>
+    </div>
+  </aside>
 
-</main>
+  <!-- Main content -->
+  <main class="main" role="main">
 
-<!-- WHATSAPP FLOAT BUTTON -->
-<a href="https://wa.me/9384608177" class="whatsapp-float" target="_blank">💬</a>
+    <!-- About -->
+    <section id="about">
+      <h2>About Me</h2>
+      <p>
+        An Electronics & Communication engineering graduate turned Data Scientist. I specialise in building
+        production-ready ML/DL models and business intelligence solutions — combining strong programming (Python),
+        statistical thinking, and dashboarding to drive data-informed decisions.
+      </p>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills">
+      <h2>Skills</h2>
+
+      <div class="skills-groups">
+        <div class="skill-block">
+          <h3 class="skill-heading">Technical</h3>
+          <div class="skill-row">
+            <div class="skill-card">Python Programming</div>
+            <div class="skill-card">Structured Query Language (SQL)</div>
+            <div class="skill-card">Machine Learning</div>
+            <div class="skill-card">Deep Learning</div>
+            <div class="skill-card">Artificial Intelligence</div>
+          </div>
+        </div>
+
+        <div class="skill-block">
+          <h3 class="skill-heading">Tools</h3>
+          <div class="skill-row">
+            <div class="skill-card">Power BI</div>
+            <div class="skill-card">Advanced Microsoft Excel</div>
+            <div class="skill-card">Jupyter Notebook</div>
+            <div class="skill-card">Google Colab</div>
+            <div class="skill-card">Visual Studio Code (VS Code)</div>
+            <div class="skill-card">GitHub</div>
+          </div>
+        </div>
+
+        <div class="skill-block">
+          <h3 class="skill-heading">Soft Skills</h3>
+          <div class="skill-row">
+            <div class="skill-card">Communication</div>
+            <div class="skill-card">Teamwork</div>
+            <div class="skill-card">Leadership</div>
+            <div class="skill-card">Problem Solving</div>
+            <div class="skill-card">Time Management</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+      <h2>Projects</h2>
+
+      <div class="project-vertical">
+
+        <!-- Project 1 -->
+        <article class="project-card">
+          <div class="title">Automated 2D/3D Image Mosaicing System for Underwater Images of Poompuhar</div>
+          <p>
+            Research-focused system to stitch thousands of underwater frames into accurate 2D mosaics and support 3D reconstruction.
+            Designed to handle noisy, low-contrast underwater images and produce high-quality panoramas for archaeological documentation.
+          </p>
+          <div class="tools"><strong>Tools:</strong> Python, OpenCV, SIFT / ORB, FLANN, RANSAC, CLAHE, MATLAB</div>
+          <div style="margin-top:8px"><strong>Roles & Responsibilities:</strong></div>
+          <ul>
+            <li>Collected and preprocessed 3,690+ underwater frames; applied denoising, color correction and CLAHE for contrast improvement.</li>
+            <li>Implemented feature detection & matching pipeline (SIFT/ORB + FLANN) with RANSAC homography estimation.</li>
+            <li>Designed sliding-window stitching and multi-band blending for seam reduction and realistic panoramas.</li>
+            <li>Validated outputs using SSIM and iterative parameter tuning for underwater conditions.</li>
+          </ul>
+          <div class="project-footer">Published in IEEE Xplore</div>
+        </article>
+
+        <!-- Project 2 -->
+        <article class="project-card">
+          <div class="title">Stock Price Prediction App (Next 5 Days) — LSTM</div>
+          <p>
+            End-to-end Streamlit app that fetches historical stock data, trains an LSTM model and forecasts the next five closing prices.
+            Focused on time-series preprocessing, model training, and user-friendly visualization of predictions and actuals.
+          </p>
+          <div class="tools"><strong>Tools:</strong> Python, TensorFlow / Keras, yFinance, Pandas, NumPy, Streamlit, Matplotlib</div>
+          <div style="margin-top:8px"><strong>Roles & Responsibilities:</strong></div>
+          <ul>
+            <li>Designed data pipeline to fetch and clean historical price data using yFinance.</li>
+            <li>Implemented MinMax scaling and created 60-day sequence windows for LSTM input.</li>
+            <li>Built and trained a two-layer LSTM model; performed inverse-scaling for human-readable outputs.</li>
+            <li>Integrated model into Streamlit UI with actual vs predicted charts and a 5-day forecast display.</li>
+            <li>Added model training feedback and lightweight performance monitoring for user clarity.</li>
+          </ul>
+        </article>
+
+        <!-- Project 3 -->
+        <article class="project-card">
+          <div class="title">Adventure Works — Sales & Marketing BI Dashboard</div>
+          <p>
+            Interactive Power BI dashboard built using the Adventure Works dataset to analyze sales performance, customer segments,
+            and marketing effectiveness. Focused on KPIs that matter to business stakeholders.
+          </p>
+          <div class="tools"><strong>Tools:</strong> Power BI, DAX, Data Modeling, ETL</div>
+          <div style="margin-top:8px"><strong>Roles & Responsibilities:</strong></div>
+          <ul>
+            <li>Performed ETL and data modelling to build a clean analytics dataset.</li>
+            <li>Developed KPI cards for revenue, profit margin, and customer counts.</li>
+            <li>Created interactive visuals, slicers and drill-through pages for multi-level analysis.</li>
+            <li>Produced actionable reports enabling product and region level decisions.</li>
+          </ul>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Courses -->
+    <section id="courses">
+      <h2>Courses</h2>
+      <div class="course-card">
+        <strong>Masters in Data Science &amp; AI (6 Months)</strong>
+        <div style="margin-top:6px;color:var(--white)">FITA Training Academy — Completed</div>
+      </div>
+    </section>
+
+    <!-- Internships -->
+    <section id="internships">
+      <h2>Internships</h2>
+      <div class="intern-grid">
+        <div class="intern-card">
+          <h3>Data Engineer Intern — Madras Fertilizers Limited</h3>
+          <p>Duration: 1 month</p>
+          <div style="margin-top:6px"><strong>Roles & Responsibilities:</strong></div>
+          <ul>
+            <li>Collected, cleaned and validated large operational datasets for analytics consumption.</li>
+            <li>Built ETL scripts and simple pipelines to move and shape data.</li>
+            <li>Automated daily ingestion for reporting teams and documented data workflows.</li>
+            <li>Collaborated with operations to map data sources and improve data quality.</li>
+          </ul>
+        </div>
+
+        <div class="intern-card">
+          <h3>Data Analyst Intern — Oracis Advance SEZ Private Limited</h3>
+          <p>Duration: 6 months</p>
+          <div style="margin-top:6px"><strong>Roles & Responsibilities:</strong></div>
+          <ul>
+            <li>Performed data cleaning, preprocessing and exploratory data analysis using Python and Excel.</li>
+            <li>Built interactive dashboards and reports in Power BI to support stakeholders.</li>
+            <li>Generated insights and recommendations to improve operational efficiency.</li>
+            <li>Prepared automated reports and helped set up periodic reporting schedules.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <h2>Contact</h2>
+      <p style="color:var(--white)">Email: <a href="mailto:keerthiib13@gmail.com" style="color:var(--white)">keerthiib13@gmail.com</a></p>
+      <p style="color:var(--white)">Phone: <a href="tel:+919384608177" style="color:var(--white)">+91 9384608177</a></p>
+      <div class="footer">© 2025 Keerthi B</div>
+    </section>
+
+  </main>
+
+  <!-- WhatsApp floating button -->
+  <a href="https://wa.me/9384608177" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">💬</a>
 
 <script>
-const toggle = document.getElementById("themeToggle");
+  // Theme toggle logic
+  const toggle = document.getElementById('themeToggle');
+  toggle.addEventListener('click', () => {
+    document.body.classList.toggle('has-light');
+    // swap icon
+    if(document.body.classList.contains('has-light')) toggle.textContent = '🌙';
+    else toggle.textContent = '☀️';
+  });
 
-toggle.addEventListener("click", () => {
-    document.body.classList.toggle("dark");
-
-    if (document.body.classList.contains("dark")) {
-        toggle.textContent = "☀️";
-    } else {
-        toggle.textContent = "🌙";
-    }
-});
+  // Small UX: highlight nav based on scroll
+  const sections = document.querySelectorAll('main section[id]');
+  const navLinks = document.querySelectorAll('.header nav a');
+  function onScroll(){
+    const scrollPos = window.scrollY + 120;
+    sections.forEach(s=>{
+      if(s.offsetTop <= scrollPos && s.offsetTop + s.offsetHeight > scrollPos){
+        navLinks.forEach(a=>a.style.opacity = '0.6');
+        const active = document.querySelector('.header nav a[href="#'+s.id+'"]');
+        if(active) active.style.opacity = '1';
+      }
+    });
+  }
+  window.addEventListener('scroll', onScroll);
+  onScroll();
 </script>
 
 </body>
