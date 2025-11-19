@@ -6,6 +6,7 @@
 <title>Keerthi B — Data Scientist & Data Analyst</title>
 
 <style>
+  /* Theme colors */
   :root{
     --charcoal:#1b1b1d;
     --panel:#232326;
@@ -15,6 +16,7 @@
     --muted:#bfc6c9;
   }
 
+  /* Light mode variables (applied when body.has-light) */
   body.has-light{
     --charcoal:#ffffff;
     --panel:#f7f7f7;
@@ -24,20 +26,26 @@
     --muted:#666666;
   }
 
+  /* Base */
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
   body{
-    margin:0;font-family:"Times New Roman", serif;
-    background:var(--charcoal);color:var(--white);
+    margin:0;
+    font-family:"Times New Roman", serif;
+    background:var(--charcoal);
+    color:var(--white);
     -webkit-font-smoothing:antialiased;
     transition:background .32s, color .32s;
   }
-  a{color:var(--aqua);text-decoration:none}
+  a{color:var(--aqua); text-decoration:none}
 
+  /* Header nav */
   .header{
-    position:fixed;top:0;left:0;right:0;background:var(--panel);
+    position:fixed;top:0;left:0;right:0;
+    background:var(--panel);
     display:flex;justify-content:center;align-items:center;
-    padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.06);
+    padding:12px 16px;
+    border-bottom:1px solid rgba(255,255,255,0.06);
     z-index:60;
   }
   .header nav{display:flex;gap:22px}
@@ -46,89 +54,81 @@
   .header nav a:hover:after{width:100%}
   .header nav a:hover{color:var(--white)}
 
+  /* Theme toggle button */
   #themeToggle{
-    position:absolute;right:18px;top:10px;background:var(--aqua);
-    color:#000;border:none;padding:6px 12px;border-radius:8px;cursor:pointer;font-weight:700;
+    position:absolute; right:18px; top:10px;
+    background:var(--aqua); color:#000; border:none; padding:6px 12px;
+    border-radius:8px; cursor:pointer; font-weight:700;
   }
 
+  /* Layout */
   .sidebar{
-    position:fixed;left:0;top:0;bottom:0;width:300px;background:var(--panel);
-    padding:120px 22px 30px;overflow:auto;
+    position:fixed; left:0; top:0; bottom:0;
+    width:300px;
+    background:var(--panel);
+    padding:120px 22px 30px;
+    overflow:auto;
     border-right:1px solid rgba(255,255,255,0.06);
   }
   .main{margin-left:330px;padding:110px 44px 60px;min-height:100vh}
 
+  /* Sidebar content order: photo -> role -> name -> details */
   .profile-pic{display:flex;justify-content:center}
-  .profile-pic img{
-    width:200px;height:200px;border-radius:50%;object-fit:cover;
-    border:4px solid var(--aqua);
-    box-shadow:0 10px 28px rgba(79,220,217,0.08);
-    transition:transform .3s;
-  }
+  .profile-pic img{width:200px;height:200px;border-radius:50%;object-fit:cover;border:4px solid var(--aqua);box-shadow:0 10px 28px rgba(79,220,217,0.08);transition:transform .3s}
   .profile-pic img:hover{transform:scale(1.03)}
-
   .role{color:var(--aqua);text-align:center;margin-top:12px;font-weight:800}
   .name{font-size:22px;text-align:center;margin-top:6px;font-weight:700}
-
   .details{margin-top:18px;display:flex;flex-direction:column;gap:10px}
   .details .label{color:var(--aqua);font-weight:700;font-size:13px}
   .details .value{color:var(--white);font-size:15px;word-break:break-word}
 
+  /* Sections */
   section{margin-bottom:34px;opacity:0;animation:fadeIn .6s ease forwards}
   @keyframes fadeIn{to{opacity:1}}
   h2{color:var(--aqua);font-size:26px;margin:0 0 8px}
 
+  /* ABOUT (professional) */
   .about p{color:var(--white);line-height:1.6;font-size:16px;max-width:900px}
 
+  /* Skills */
   .skills-groups{display:flex;flex-direction:column;gap:20px}
   .skill-block h3{color:var(--aqua);margin:0 0 8px;font-size:18px}
   .skill-row{display:flex;gap:10px;flex-wrap:wrap}
   .skill-card{
-    background:var(--card);padding:10px 14px;border-radius:9px;
-    border:1px solid rgba(255,255,255,0.04);
-    font-size:15px;color:var(--white);
+    background:var(--card);padding:10px 14px;border-radius:9px;border:1px solid rgba(255,255,255,0.04);
+    font-size:15px;color:var(--white)
   }
 
+  /* Projects */
   .project-vertical{display:flex;flex-direction:column;gap:18px}
   .project-card{
     background:var(--card);padding:20px;border-radius:12px;border-left:4px solid var(--aqua);
-    box-shadow:0 8px 28px rgba(0,0,0,0.35);
+    box-shadow:0 8px 28px rgba(0,0,0,0.35)
   }
   .project-card .title{color:var(--aqua);font-size:20px;margin:0 0 8px;font-weight:800}
   .project-card p, .project-card ul{color:var(--white);font-size:15px;line-height:1.6}
   .project-card ul{margin-left:18px}
   .project-card .tools{margin-top:8px;color:var(--muted);font-size:14px}
 
-  .project-footer{color:var(--muted);margin-top:10px;font-size:14px}
+  /* Courses */
+  .course-card{background:var(--card);padding:18px;border-left:4px solid var(--aqua);border-radius:12px;color:var(--white)}
 
-  .course-card{
-    background:var(--card);padding:18px;border-left:4px solid var(--aqua);
-    border-radius:12px;color:var(--white)
-  }
-
+  /* Internships */
   .intern-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:18px}
-  .intern-card{
-    background:var(--card);padding:18px;border-radius:12px;border-left:4px solid var(--aqua);
-    color:var(--white)
-  }
+  .intern-card{background:var(--card);padding:18px;border-radius:12px;border-left:4px solid var(--aqua);color:var(--white)}
   .intern-card p, .intern-card ul{font-size:15px;color:var(--white);line-height:1.6}
 
-  .whatsapp-float{
-    position:fixed;right:18px;bottom:18px;width:58px;height:58px;
-    border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;
-    box-shadow:0 10px 30px rgba(0,0,0,0.25);z-index:999;
-  }
-  .whatsapp-float img{width:32px;height:32px}
+  /* WhatsApp float */
+  .whatsapp-float{position:fixed;right:18px;bottom:18px;background:#25D366;color:#fff;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;text-decoration:none;box-shadow:0 10px 30px rgba(0,0,0,0.25);z-index:999}
 
-  .footer{text-align:center;color:var(--muted);font-size:14px;margin-top:30px}
+  /* Footer */
+  .footer{margin-top:30px;color:var(--muted);font-size:14px;text-align:center}
 
-  .project-card:hover,.intern-card:hover{
-    transform:translateY(-6px);box-shadow:0 0 22px rgba(79,220,217,0.18);
-    transition:all .28s;
-  }
-
+  /* Hover */
+  .project-card:hover,.intern-card:hover{transform:translateY(-6px);box-shadow:0 0 22px rgba(79,220,217,0.18);transition:all .28s}
   .skill-card:hover{transform:translateY(-6px);transition:.2s}
 
+  /* Responsive */
   @media(max-width:980px){
     .sidebar{position:relative;width:100%;height:auto;padding:22px;text-align:center;border-right:0}
     .main{margin-left:0;padding:20px}
@@ -138,59 +138,260 @@
   }
 </style>
 </head>
+
 <body class="dark">
 
-<header class="header">
-  <nav>
-    <a href="#about">About</a>
-    <a href="#skills">Skills</a>
-    <a href="#projects">Projects</a>
-    <a href="#courses">Courses</a>
-    <a href="#internships">Internships</a>
-    <a href="#contact">Contact</a>
-  </nav>
-  <button id="themeToggle">☀️</button>
-</header>
+  <!-- Header nav -->
+  <header class="header">
+    <nav>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#courses">Courses</a>
+      <a href="#internships">Internships</a>
+      <a href="#contact">Contact</a>
+    </nav>
 
-<aside class="sidebar">
-  <div class="profile-pic"><img src="keerthi_photo.jpg" alt="Keerthi photo"></div>
-  <div class="role">DATA SCIENTIST & ANALYST</div>
-  <div class="name">Keerthi B</div>
+    <button id="themeToggle" aria-label="Toggle theme">☀️</button>
+  </header>
 
-  <div class="details">
-    <div><div class="label">Date of Birth</div><div class="value">13 November 2003</div></div>
-    <div><div class="label">Location</div><div class="value">Chennai, Tamil Nadu, India</div></div>
-    <div><div class="label">Email</div><div class="value"><a href="mailto:keerthiib13@gmail.com" style="color:var(--white)">keerthiib13@gmail.com</a></div></div>
-    <div><div class="label">Phone</div><div class="value"><a href="tel:+919384608177" style="color:var(--white)">+91 9384608177</a></div></div>
-    <div><div class="label">LinkedIn</div><div class="value"><a target="_blank" href="https://www.linkedin.com/in/keerthi-balasubramanian-16936a289/" style="color:var(--white)">keerthi-balasubramanian</a></div></div>
-    <div><div class="label">GitHub</div><div class="value"><a target="_blank" href="https://github.com/keerthib13" style="color:var(--white)">github.com/keerthib13</a></div></div>
-  </div>
-</aside>
+  <!-- Sidebar -->
+  <aside class="sidebar" role="complementary">
+    <div class="profile-pic">
+      <img src="keerthi_photo.jpg" alt="Keerthi photo">
+    </div>
 
-<main class="main">
-  <section id="about">
-    <h2>About Me</h2>
-    <p>Electronics & Communication graduate turned Data Scientist. I build ML/DL models and BI solutions using Python, analytics and dashboarding.</p>
-  </section>
+    <div class="role">DATA SCIENTIST &amp; ANALYST</div>
+    <div class="name">Keerthi B</div>
 
-  <section id="skills">
-    <h2>Skills</h2>
-    <div class="skills-groups">
-      <div class="skill-block"><h3>Technical</h3>
-        <div class="skill-row">
-          <div class="skill-card">Python Programming</div>
-          <div class="skill-card">SQL</div>
-          <div class="skill-card">Machine Learning</div>
-          <div class="skill-card">Deep Learning</div>
-          <div class="skill-card">Artificial Intelligence</div>
-        </div>
+    <div class="details">
+      <div>
+        <div class="label">Date of Birth</div>
+        <div class="value">13 November 2003</div>
       </div>
 
-      <div class="skill-block"><h3>Tools</h3>
-        <div class="skill-row">
-          <div class="skill-card">Power BI</div>
-          <div class="skill-card">Advanced Excel</div>
-          <div class="skill-card">Jupyter Notebook</div>
-          <div class="skill-card">Google Colab</div>
-          <div class="skill-card">VS Code</div>
-          <div class="
+      <div>
+        <div class="label">Location</div>
+        <div class="value">Chennai, Tamil Nadu, India</div>
+      </div>
+
+      <div>
+        <div class="label">Email</div>
+        <div class="value"><a href="mailto:keerthiib13@gmail.com" style="color:var(--white)">keerthiib13@gmail.com</a></div>
+      </div>
+
+      <div>
+        <div class="label">Phone</div>
+        <div class="value"><a href="tel:+919384608177" style="color:var(--white)">+91 9384608177</a></div>
+      </div>
+
+      <div>
+        <div class="label">LinkedIn</div>
+        <div class="value"><a href="https://www.linkedin.com/in/keerthi-balasubramanian-16936a289/" target="_blank" style="color:var(--white)">keerthi-balasubramanian</a></div>
+      </div>
+
+      <div>
+        <div class="label">GitHub</div>
+        <div class="value"><a href="https://github.com/keerthib13" target="_blank" style="color:var(--white)">github.com/keerthib13</a></div>
+      </div>
+
+    </div>
+  </aside>
+
+  <!-- Main content -->
+  <main class="main" role="main">
+
+    <!-- About -->
+    <section id="about">
+      <h2>About Me</h2>
+      <p>
+        An Electronics & Communication engineering graduate turned Data Scientist. I specialise in building
+        production-ready ML/DL models and business intelligence solutions — combining strong programming (Python),
+        statistical thinking, and dashboarding to drive data-informed decisions.
+      </p>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills">
+      <h2>Skills</h2>
+
+      <div class="skills-groups">
+        <div class="skill-block">
+          <h3 class="skill-heading">Technical</h3>
+          <div class="skill-row">
+            <div class="skill-card">Python Programming</div>
+            <div class="skill-card">Structured Query Language (SQL)</div>
+            <div class="skill-card">Machine Learning</div>
+            <div class="skill-card">Deep Learning</div>
+            <div class="skill-card">Artificial Intelligence</div>
+          </div>
+        </div>
+
+        <div class="skill-block">
+          <h3 class="skill-heading">Tools</h3>
+          <div class="skill-row">
+            <div class="skill-card">Power BI</div>
+            <div class="skill-card">Advanced Microsoft Excel</div>
+            <div class="skill-card">Jupyter Notebook</div>
+            <div class="skill-card">Google Colab</div>
+            <div class="skill-card">Visual Studio Code (VS Code)</div>
+            <div class="skill-card">GitHub</div>
+          </div>
+        </div>
+
+        <div class="skill-block">
+          <h3 class="skill-heading">Soft Skills</h3>
+          <div class="skill-row">
+            <div class="skill-card">Communication</div>
+            <div class="skill-card">Teamwork</div>
+            <div class="skill-card">Leadership</div>
+            <div class="skill-card">Problem Solving</div>
+            <div class="skill-card">Time Management</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+      <h2>Projects</h2>
+
+      <div class="project-vertical">
+
+        <!-- Project 1 -->
+        <article class="project-card">
+          <div class="title">Automated 2D/3D Image Mosaicing System for Underwater Images of Poompuhar</div>
+          <p>
+            Research-focused system to stitch thousands of underwater frames into accurate 2D mosaics and support 3D reconstruction.
+            Designed to handle noisy, low-contrast underwater images and produce high-quality panoramas for archaeological documentation.
+          </p>
+          <div class="tools"><strong>Tools:</strong> Python, OpenCV, SIFT / ORB, FLANN, RANSAC, CLAHE, MATLAB</div>
+          <div style="margin-top:8px"><strong>Roles & Responsibilities:</strong></div>
+          <ul>
+            <li>Collected and preprocessed 3,690+ underwater frames; applied denoising, color correction and CLAHE for contrast improvement.</li>
+            <li>Implemented feature detection & matching pipeline (SIFT/ORB + FLANN) with RANSAC homography estimation.</li>
+            <li>Designed sliding-window stitching and multi-band blending for seam reduction and realistic panoramas.</li>
+            <li>Validated outputs using SSIM and iterative parameter tuning for underwater conditions.</li>
+          </ul>
+          <div class="project-footer">Published in IEEE Xplore</div>
+        </article>
+
+        <!-- Project 2 -->
+        <article class="project-card">
+          <div class="title">Stock Price Prediction App (Next 5 Days) — LSTM</div>
+          <p>
+            End-to-end Streamlit app that fetches historical stock data, trains an LSTM model and forecasts the next five closing prices.
+            Focused on time-series preprocessing, model training, and user-friendly visualization of predictions and actuals.
+          </p>
+          <div class="tools"><strong>Tools:</strong> Python, TensorFlow / Keras, yFinance, Pandas, NumPy, Streamlit, Matplotlib</div>
+          <div style="margin-top:8px"><strong>Roles & Responsibilities:</strong></div>
+          <ul>
+            <li>Designed data pipeline to fetch and clean historical price data using yFinance.</li>
+            <li>Implemented MinMax scaling and created 60-day sequence windows for LSTM input.</li>
+            <li>Built and trained a two-layer LSTM model; performed inverse-scaling for human-readable outputs.</li>
+            <li>Integrated model into Streamlit UI with actual vs predicted charts and a 5-day forecast display.</li>
+            <li>Added model training feedback and lightweight performance monitoring for user clarity.</li>
+          </ul>
+        </article>
+
+        <!-- Project 3 -->
+        <article class="project-card">
+          <div class="title">Adventure Works — Sales & Marketing BI Dashboard</div>
+          <p>
+            Interactive Power BI dashboard built using the Adventure Works dataset to analyze sales performance, customer segments,
+            and marketing effectiveness. Focused on KPIs that matter to business stakeholders.
+          </p>
+          <div class="tools"><strong>Tools:</strong> Power BI, DAX, Data Modeling, ETL</div>
+          <div style="margin-top:8px"><strong>Roles & Responsibilities:</strong></div>
+          <ul>
+            <li>Performed ETL and data modelling to build a clean analytics dataset.</li>
+            <li>Developed KPI cards for revenue, profit margin, and customer counts.</li>
+            <li>Created interactive visuals, slicers and drill-through pages for multi-level analysis.</li>
+            <li>Produced actionable reports enabling product and region level decisions.</li>
+          </ul>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Courses -->
+    <section id="courses">
+      <h2>Courses</h2>
+      <div class="course-card">
+        <strong>Masters in Data Science &amp; AI (6 Months)</strong>
+        <div style="margin-top:6px;color:var(--white)">FITA Training Academy — Completed</div>
+      </div>
+    </section>
+
+    <!-- Internships -->
+    <section id="internships">
+      <h2>Internships</h2>
+      <div class="intern-grid">
+        <div class="intern-card">
+          <h3>Data Engineer Intern — Madras Fertilizers Limited</h3>
+          <p>Duration: 1 month</p>
+          <div style="margin-top:6px"><strong>Roles & Responsibilities:</strong></div>
+          <ul>
+            <li>Collected, cleaned and validated large operational datasets for analytics consumption.</li>
+            <li>Built ETL scripts and simple pipelines to move and shape data.</li>
+            <li>Automated daily ingestion for reporting teams and documented data workflows.</li>
+            <li>Collaborated with operations to map data sources and improve data quality.</li>
+          </ul>
+        </div>
+
+        <div class="intern-card">
+          <h3>Data Analyst Intern — Oracis Advance SEZ Private Limited</h3>
+          <p>Duration: 6 months</p>
+          <div style="margin-top:6px"><strong>Roles & Responsibilities:</strong></div>
+          <ul>
+            <li>Performed data cleaning, preprocessing and exploratory data analysis using Python and Excel.</li>
+            <li>Built interactive dashboards and reports in Power BI to support stakeholders.</li>
+            <li>Generated insights and recommendations to improve operational efficiency.</li>
+            <li>Prepared automated reports and helped set up periodic reporting schedules.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <h2>Contact</h2>
+      <p style="color:var(--white)">Email: <a href="mailto:keerthiib13@gmail.com" style="color:var(--white)">keerthiib13@gmail.com</a></p>
+      <p style="color:var(--white)">Phone: <a href="tel:+919384608177" style="color:var(--white)">+91 9384608177</a></p>
+      <div class="footer">© 2025 Keerthi B</div>
+    </section>
+
+  </main>
+
+  <!-- WhatsApp floating button -->
+  <a href="https://wa.me/9384608177" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">💬</a>
+
+<script>
+  // Theme toggle logic
+  const toggle = document.getElementById('themeToggle');
+  toggle.addEventListener('click', () => {
+    document.body.classList.toggle('has-light');
+    // swap icon
+    if(document.body.classList.contains('has-light')) toggle.textContent = '🌙';
+    else toggle.textContent = '☀️';
+  });
+
+  // Small UX: highlight nav based on scroll
+  const sections = document.querySelectorAll('main section[id]');
+  const navLinks = document.querySelectorAll('.header nav a');
+  function onScroll(){
+    const scrollPos = window.scrollY + 120;
+    sections.forEach(s=>{
+      if(s.offsetTop <= scrollPos && s.offsetTop + s.offsetHeight > scrollPos){
+        navLinks.forEach(a=>a.style.opacity = '0.6');
+        const active = document.querySelector('.header nav a[href="#'+s.id+'"]');
+        if(active) active.style.opacity = '1';
+      }
+    });
+  }
+  window.addEventListener('scroll', onScroll);
+  onScroll();
+</script>
+
+</body>
+</html>
